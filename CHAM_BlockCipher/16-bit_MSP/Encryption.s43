@@ -1,0 +1,730 @@
+
+        NAME Encryption
+
+        RTMODEL "__SystemLibrary", "DLib"
+        RTMODEL "__core", "430"
+        RTMODEL "__double_size", "32"
+        RTMODEL "__pic", "no"
+        RTMODEL "__reg_r4", "free"
+        RTMODEL "__reg_r5", "free"
+        RTMODEL "__rt_version", "3"
+
+        RSEG CSTACK:DATA:SORT:NOROOT(0)
+
+        EXTERN ?longjmp_r4
+        EXTERN ?longjmp_r5
+        EXTERN ?setjmp_r4
+        EXTERN ?setjmp_r5
+
+        PUBWEAK ?setjmp_save_r4
+        PUBWEAK ?setjmp_save_r5
+        PUBLIC Encryption64_128
+        
+          CFI Names cfiNames0
+          CFI StackFrame CFA SP DATA
+          CFI Resource PC:16, SP:16, SR:16, R4:16, R5:16, R6:16, R7:16, R8:16
+          CFI Resource R9:16, R10:16, R11:16, R12:16, R13:16, R14:16, R15:16
+          CFI EndNames cfiNames0
+        
+          CFI Common cfiCommon0 Using cfiNames0
+          CFI CodeAlign 2
+          CFI DataAlign 2
+          CFI ReturnAddress PC CODE
+          CFI CFA SP+2
+          CFI PC Frame(CFA, -2)
+          CFI SR Undefined
+          CFI R4 SameValue
+          CFI R5 SameValue
+          CFI R6 SameValue
+          CFI R7 SameValue
+          CFI R8 SameValue
+          CFI R9 SameValue
+          CFI R10 SameValue
+          CFI R11 SameValue
+          CFI R12 Undefined
+          CFI R13 Undefined
+          CFI R14 Undefined
+          CFI R15 Undefined
+          CFI EndCommon cfiCommon0
+        
+
+        RSEG `CODE`:CODE:REORDER:NOROOT(1)
+Encryption64_128:
+          CFI Block cfiBlock0 Using cfiCommon0
+          CFI Function Encryption64_128
+          CFI NoCalls
+
+        MOV.W   @R12, R4
+        MOV.W   0x2(R12), R5
+        MOV.W   0x4(R12), R6
+        MOV.W   0x6(R12), R7
+        
+        MOV.W   0x2(R13), R8
+        MOV.W   0x4(R13), R9
+        MOV.W   0x6(R13), R10
+        MOV.W   0x8(R13), R11
+        MOV.W   0xa(R13), R12
+        MOV.W   0xc(R13), R14
+        
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        
+        MOV.W   0x4(R13), R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   @R13, R15
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   R8, R15
+        XOR.W   #0x1, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   R9, R15
+        XOR.W   #0x2, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   R10, R15
+        XOR.W   #0x3, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   R11, R15
+        XOR.W   #0x4, R4
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   R12, R15
+        XOR.W   #0x5, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   R14, R15
+        XOR.W   #0x6, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   0xe(R13), R15
+        XOR.W   #0x7, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+        
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x10(R13), R15
+        XOR.W   #0x8, R4
+        ADD.W   R15, R4
+        SWPB    R4
+        
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   0x12(R13), R15
+        XOR.W   #0x9, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x14(R13), R15
+        XOR.W   #0xa, R6
+        ADD.W   R15, R6
+        SWPB    R6
+        
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   0x16(R13), R15
+        XOR.W   #0xb, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x18(R13), R15
+        XOR.W   #0xc, R4
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   0x1a(R13), R15
+        XOR.W   #0xd, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x1c(R13), R15
+        XOR.W   #0xe, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   0x1e(R13), R15
+        XOR.W   #0xf, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   @R13, R15
+        XOR.W   #0x10, R4
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   R8, R15
+        XOR.W   #0x11, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   R9, R15
+        XOR.W   #0x12, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   R10, R15
+        XOR.W   #0x13, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   R11, R15
+        XOR.W   #0x14, R4
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   R12, R15
+        XOR.W   #0x15, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   R14, R15
+        XOR.W   #0x16, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   0xe(R13), R15
+        XOR.W   #0x17, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x10(R13), R15
+        XOR.W   #0x18, R4
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   0x12(R13), R15
+        XOR.W   #0x19, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x14(R13), R15
+        XOR.W   #0x1a, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   0x16(R13), R15
+        XOR.W   #0x1b, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x18(R13), R15
+        XOR.W   #0x1c, R4
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   0x1a(R13), R15
+        XOR.W   #0x1d, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x1c(R13), R15
+        XOR.W   #0x1e, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   0x1e(R13), R15
+        XOR.W   #0x1f, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   @R13, R15
+        XOR.W   #0x20, R4
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   R8, R15
+        XOR.W   #0x21, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   R9, R15
+        XOR.W   #0x22, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   R10, R15
+        XOR.W   #0x23, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   R11, R15
+        XOR.W   #0x24, R4
+        ADD.W   R15, R4
+        SWPB    R4
+        
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   R12, R15
+        XOR.W   #0x25, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   R14, R15
+        XOR.W   #0x26, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   0xe(R13), R15
+        XOR.W   #0x27, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x10(R13), R15
+        XOR.W   #0x28, R4
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   0x12(R13), R15
+        XOR.W   #0x29, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x14(R13), R15
+        XOR.W   #0x2a, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   0x16(R13), R15
+        XOR.W   #0x2b, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+        
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x18(R13), R15
+        XOR.W   #0x2c, R4
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   0x1a(R13), R15
+        XOR.W   #0x2d, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x1c(R13), R15
+        XOR.W   #0x2e, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   0x1e(R13), R15
+        XOR.W   #0x2f, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   @R13, R15
+        XOR.W   #0x30, R4
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   R8, R15
+        XOR.W   #0x31, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   R9, R15
+        XOR.W   #0x32, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   R10, R15
+        XOR.W   #0x33, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   R11, R15
+        XOR.W   #0x34, R4
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   R12, R15
+        XOR.W   #0x35, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   R14, R15
+        XOR.W   #0x36, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   0xe(R13), R15
+        XOR.W   #0x37, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x10(R13), R15
+        XOR.W   #0x38, R4
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   0x12(R13), R15
+        XOR.W   #0x39, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x14(R13), R15
+        XOR.W   #0x3a, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   0x16(R13), R15
+        XOR.W   #0x3b, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x18(R13), R15
+        XOR.W   #0x3c, R4
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   0x1a(R13), R15
+        XOR.W   #0x3d, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+        
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x1c(R13), R15
+        XOR.W   #0x3e, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   0x1e(R13), R15
+        XOR.W   #0x3f, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   @R13, R15
+        XOR.W   #0x40, R4
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   R8, R15
+        XOR.W   #0x41, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   R9, R15
+        XOR.W   #0x42, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   R10, R15
+        XOR.W   #0x43, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   R11, R15
+        XOR.W   #0x44, R4
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   R12, R15
+        XOR.W   #0x45, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   R14, R15
+        XOR.W   #0x46, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   0xe(R13), R15
+        XOR.W   #0x47, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x10(R13), R15
+        XOR.W   #0x48, R4
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   0x12(R13), R15
+        XOR.W   #0x49, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x14(R13), R15
+        XOR.W   #0x4a, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   0x16(R13), R15
+        XOR.W   #0x4b, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R5, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x18(R13), R15
+        XOR.W   #0x4c, R4
+        ADD.W   R15, R4
+        SWPB    R4
+
+        MOV.W   R6, R15
+        SWPB    R15
+        XOR.W   0x1a(R13), R15
+        XOR.W   #0x4d, R5
+        ADD.W   R15, R5
+        BIT.W   #0x8000, R5
+        RLC.W   R5
+
+        MOV.W   R7, R15
+        BIT.W   #0x8000, R15
+        RLC.W   R15
+        XOR.W   0x1c(R13), R15
+        XOR.W   #0x4e, R6
+        ADD.W   R15, R6
+        SWPB    R6
+
+        MOV.W   R4, R15
+        SWPB    R15
+        XOR.W   0x1e(R13), R15
+        XOR.W   #0x4f, R7
+        ADD.W   R15, R7
+        BIT.W   #0x8000, R7
+        RLC.W   R7
+
+        MOV.W   R4, &0x1100
+        MOV.W   R5, &0x1102
+        MOV.W   R6, &0x1104
+        MOV.W   R7, &0x1106
+
+        RET
+          CFI EndBlock cfiBlock0
+
+        RSEG `CODE`:CODE:REORDER:NOROOT(1)
+?setjmp_save_r4:
+        REQUIRE ?setjmp_r4
+        REQUIRE ?longjmp_r4
+
+        RSEG `CODE`:CODE:REORDER:NOROOT(1)
+?setjmp_save_r5:
+        REQUIRE ?setjmp_r5
+        REQUIRE ?longjmp_r5
+
+        END
